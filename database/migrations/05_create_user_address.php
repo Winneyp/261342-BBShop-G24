@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('User_address', function (Blueprint $table) {
             $table->id('address_id'); // Primary key
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key to users table
+            $table->foreignId('user_id')->references('id')->on('Login_detail'); // Foreign key to users table
             $table->string('address_line1'); // Address line 1
             $table->string('address_line2')->nullable(); // Address line 2
             $table->string('subdistrict'); // Subdistrict
