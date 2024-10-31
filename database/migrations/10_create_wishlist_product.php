@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id('wishlist_product_id');
             $table->unsignedBigInteger('wishlist_id');
             $table->foreign('wishlist_id')->references('wishlist_id')->on('Wishlist');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('product_id')->on('Product');
             $table->timestamps();
         });
     }
