@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.flex-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.space-x-4 {
+    margin-right: 16px; /* Adjust this value for desired spacing */
+}
+
+.flex-container {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center; /* Center items vertically */
+}
+
+.space-x-4 {
+    margin-right: 16px; /* Adjust this value for desired spacing */
+}

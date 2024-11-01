@@ -20,7 +20,7 @@ class Product extends Model
         'size',
         'color',
         'picture',
-        'description',
+        'name',
         'stock_quantity',
     ];
 
@@ -29,4 +29,22 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class, 'cat_id');
     }
 
+    public function categoryName()
+    {
+        return $this->belongsTo(ProductCategory::class, 'catagoryname');
+    }
+
+    public function wishlists()
+    {
+        return $this->belongsToMany(Wishlist::class, 'WishlistProduct', 'product_id', 'wishlist_id')
+                    ->withPivot('wishlist_product_id')
+                    ->withTimestamps();
+    }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Wishlist::class, 'WishlistProduct', 'product_id', 'wishlist_id')
+                    ->withPivot('wishlist_product_id')
+                    ->withTimestamps();
+    }
 }
