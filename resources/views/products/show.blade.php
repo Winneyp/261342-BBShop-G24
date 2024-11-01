@@ -6,9 +6,9 @@
             <div class="md:flex">
                 <!-- Product Image -->
                 <div class="md:w-1/2">
-                    @if ($product->picture)
-                        <img src="{{ asset('storage/' . $product->picture) }}" alt="Product Image"
-                            class="w-full h-full object-cover">
+                    @if ($products->picture)
+                        <img src="{{ asset('storage/' . $products->picture) }}" alt="Product Image"
+                            class="w-full h-[400px] object-contain bg-gray-50">
                     @else
                         <div class="bg-gray-200 w-full h-full flex items-center justify-center">
                             <span class="text-gray-500">No image available</span>
@@ -18,6 +18,10 @@
 
                 <!-- Product Details -->
                 <div class="md:w-1/2 p-8">
+                    <!-- Product Name -->
+                    <h1 class="text-2xl font-bold text-gray-900 mb-4">
+                        {{ $products->description }}
+                    </h1>
                     <!-- Stock Status Badge -->
                     <div class="mb-4">
                         @if ($product->stock_quantity > 0)
