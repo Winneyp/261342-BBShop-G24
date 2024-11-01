@@ -17,9 +17,11 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-    public function show($id){
-        $products = Product::findOrFail($id);
-        return view('products.show', compact('products'));
+    public function show($id)
+    {
+        // Fetch the product by ID
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
     }
 
     public function deleteClothFromDb()
@@ -41,7 +43,6 @@ class ProductController extends Controller
         // Redirect back to the delete/edit page with a success message
         return redirect()->route('delete.cloth.from.db')->with('success', 'Product removed successfully.');
     }
-
     
     public function showAddProductForm()
     {
@@ -49,8 +50,6 @@ class ProductController extends Controller
         return view('product_admin.add-product', compact('categories'));
     }
 
-
-    
     // Handle the form submission to add a new product
     public function store(Request $request)
     {
@@ -68,7 +67,7 @@ class ProductController extends Controller
         // Handle the file upload
         $path = '';
         if ($request->file('picture')) {
-        // Store the file in the public/product_image directory
+            // Store the file in the public/product_image directory
             $path = $request->file('picture')->store('product_image', 'public');
         }
 
@@ -85,11 +84,4 @@ class ProductController extends Controller
 
         return redirect()->route('delete.cloth.from.db')->with('success', 'Product added successfully.');
     }
-
-    //fetch product by id
-    public function show($id){
-        $product = Product::findOrFail($id);
-        return view('products.show', compact('product'));
-    }
-    
 }

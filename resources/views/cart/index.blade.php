@@ -55,6 +55,10 @@
           margin: 5px 0; 
         }
 
+        .cart-info-quantity {
+          /* margin-top: 90px; */
+        }
+
         .cart-summary { 
           background-color: #f7f7f7; 
           padding: 15px;
@@ -120,68 +124,98 @@
 
         <div class="cart-container-box">
           <div class="cart-item-container">
-              @foreach($products as $product)
+              <!-- @foreach($items as $item) -->
+              <div class="cart-item">
+                <div
+                  class="image-container"
+                >
+                  <!-- <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}"> -->
+                  <img style="width: 100%; height: 100%;" src="../../public/images/fighter.jpg" alt="{{ $item['name'] }}">
+                </div>
+
+                <div class="cart-details">
+                  <div class="cart-detail-content">
+                    <!-- <div class="cart-title">{{ $item['name'] }}</div> -->
+                    <div class="cart-title">
+                      <div>เสื้อฮู้ด ผ้าสเวต แขนยาว แบบสวมหัว</div>
+                      <div>x</div>
+                    </div>
+                    <!-- <div class="cart-info">สี: {{ $item['code'] }}</div> -->
+                    <div class="cart-info">สี: RED</div>
+                    <!-- <div class="cart-info">ขนาด: {{ $item['size'] }}</div> -->
+                    <div class="cart-info">ขนาด: XL</div>
+                    <!-- <div class="cart-info">ราคา: THB {{ number_format($item['price'], 2) }}</div> -->
+                    <div class="cart-info">ราคา: THB 1,290.00</div>
+                  </div>
+
+                  <div class="cart-detail-summary">
+                    <div class="cart-info-quantity">
+                        จำนวน:
+                        <br/>
+                        <select class="select-quantity" name="quantity" id="quantity_{{ $loop->index }}">
+                            <option value="1" {{ $item['quantity'] == 1 ? 'selected' : '' }}>1</option>
+                            <option value="2" {{ $item['quantity'] == 2 ? 'selected' : '' }}>2</option>
+                            <option value="3" {{ $item['quantity'] == 3 ? 'selected' : '' }}>3</option>
+                        </select>
+                    </div>
+
+                    <!-- <div>
+                        ยอดรวม: THB {{ number_format($item['price'] * $item['quantity'], 2) }}
+                    </div> -->
+                    <div style="margin-top: 25px;">
+                        ยอดรวม: THB 1,920.00
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="cart-item">
                   <div
                     class="image-container"
                   >
-                    <img style="width: 100%; height: 100%;" src="{{ asset('storage/' . $product->picture) }}" alt="{{ $product->description }}">
+                    <!-- <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}"> -->
+                    <img style="width: 100%; height: 100%;" src="../../public/images/fighter.jpg" alt="{{ $item['name'] }}">
                   </div>
 
                   <div class="cart-details">
                     <div class="cart-detail-content">
-                      <div class="cart-title">
-                        <div>{{ $product->name }}</div>
-                        <div>
-                          <form action="{{ route('cart.deleteItem') }}" method="DELETE" id="quantity-form-{{ $product->product_id }}" class="quantity-form">
-                            @csrf
-                            <input type="hidden" name="cart_id" value="{{ $cart->cart_id }}">
-                            <input type="hidden" name="product_id" value="{{ $product->product_id }}">
-                            <button style="border: none; background-color: transparent; font-size: 18px;" type="submit">x</button>
-                          </form>
-                        </div>
-                      </div>
-                      <div class="cart-info">สี: {{ $product->code }}</div>
-                      <div class="cart-info">ขนาด: {{ $product->size }}</div>
-                      <div class="cart-info">ราคา: THB {{ number_format($product->price, 2) }}</div>
+                      <!-- <div class="cart-title">{{ $item['name'] }}</div> -->
+                      <div class="cart-title">เสื้อฮู้ด ผ้าสเวต แขนยาว แบบสวมหัว</div>
+                      <!-- <div class="cart-info">สี: {{ $item['code'] }}</div> -->
+                      <div class="cart-info">สี: RED</div>
+                      <!-- <div class="cart-info">ขนาด: {{ $item['size'] }}</div> -->
+                      <div class="cart-info">ขนาด: XL</div>
+                      <!-- <div class="cart-info">ราคา: THB {{ number_format($item['price'], 2) }}</div> -->
+                      <div class="cart-info">ราคา: THB 1,290.00</div>
                     </div>
 
                     <div class="cart-detail-summary">
                       <div class="cart-info-quantity">
                           จำนวน:
                           <br/>
-                          <form action="{{ route('cart.updateQuantity') }}" method="PUT" id="quantity-form-{{ $product->product_id }}" class="quantity-form">
-                              @csrf
-                              <input type="hidden" name="cart_id" value="{{ $cart->cart_id }}">
-                              <input type="hidden" name="product_id" value="{{ $product->product_id }}">
-                              <select name="quantity" onchange="document.getElementById('quantity-form-{{ $product->product_id }}').submit();">
-                                  <option value="1" {{ $product->pivot->amount == 1 ? 'selected' : '' }}>1</option>
-                                  <option value="2" {{ $product->pivot->amount == 2 ? 'selected' : '' }}>2</option>
-                                  <option value="3" {{ $product->pivot->amount == 3 ? 'selected' : '' }}>3</option>
-                                  <option value="4" {{ $product->pivot->amount == 4 ? 'selected' : '' }}>4</option>
-                                  <option value="5" {{ $product->pivot->amount == 5 ? 'selected' : '' }}>5</option>
-                              </select>
-                          </form>
+                          <select class="select-quantity" name="quantity" id="quantity_{{ $loop->index }}">
+                              <option value="1" {{ $item['quantity'] == 1 ? 'selected' : '' }}>1</option>
+                              <option value="2" {{ $item['quantity'] == 2 ? 'selected' : '' }}>2</option>
+                              <option value="3" {{ $item['quantity'] == 3 ? 'selected' : '' }}>3</option>
+                          </select>
                       </div>
 
+                      <!-- <div>
+                          ยอดรวม: THB {{ number_format($item['price'] * $item['quantity'], 2) }}
+                      </div> -->
                       <div style="margin-top: 25px;">
-                        ยอดรวม: THB {{ number_format($product->price * $product->pivot->amount, 2) }}
+                          ยอดรวม: THB 1,920.00
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              @endforeach
+              <!-- @endforeach -->
 
               <div class="cart-summary">
-                <form action="{{ route('cart.heckout') }}" method="PUT" id="quantity-form-{{ $product->product_id }}" class="quantity-form">
-                  @csrf
-                  <input type="hidden" name="products" value="{{ $products }}">
-                  <input type="hidden" name="cart_id" value="{{ $cart->cart_id }}">
-                  <p>สรุปคำสั่งซื้อ {{ count($cart->amount) }} รายการ</p>
-                  <p class="total">ยอดรวม: THB {{ number_format($cart->totalPrice, 2) }}</p>
-                  <button class="checkout-btn" type="submit">ชำระเงิน</button>
-                </form>
+                <p>สรุปคำสั่งซื้อ 2 รายการ</p>
+                <p class="total">ยอดรวม: THB 2,580.00</p>
+                <button class="checkout-btn">ชำระเงิน</button>
               </div>
             </div>
         </div>

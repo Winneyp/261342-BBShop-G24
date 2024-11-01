@@ -3,82 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloth Store</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>ตะกร้าสินค้า</title>
     <style>
-        /* Custom styles for the product cards */
-        .product-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-        .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        .product-details {
-            padding: 15px;
-        }
-        .product-price {
-            color: #f76c6c;
-            font-weight: bold;
-        }
-        .product-name {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #333;
-        }
-        .product-card a {
-            text-decoration: none; /* Remove underline */
-            color: inherit; /* Use the current text color */
-        }
-        .top-right {
-            position: absolute;
-            right: 20px;
-            top: 20px;
+        .cart-container { 
+          width: 80%; 
+          margin: 0 auto; 
+          font-family: Arial, sans-serif; 
         }
 
+        /* .cart-container-box {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        } */
+
+        .cart-container-box {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          /* background-color: firebrick; */
+        }
+
+        .cart-item-container {
+          display: relative;
+          width: 70%;
+          /* background-color: aquamarine; */
+        }
+
+        .cart-item { 
+          display: flex;
+          padding: 15px 0;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .cart-details { 
+          position: relative;
+          width: calc(100% - 211px - 24px);
+          margin-right: 24px;
+        }
+
+        .cart-title { 
+          font-weight: bold; 
+          font-size: 18px;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .cart-info { 
+          margin: 5px 0; 
+        }
+
+        .cart-info-quantity {
+          /* margin-top: 90px; */
+        }
+
+        .cart-summary { 
+          background-color: #f7f7f7; 
+          padding: 15px;
+          border: 1px solid #ddd;
+          width: 30%;
+          height: 250px;
+        }
+
+        .total { 
+          font-weight: bold; 
+          font-size: 18px; 
+        }
+        
+        .checkout-btn { 
+          background-color: red; 
+          color: #fff; 
+          padding: 10px 20px; 
+          border: none; 
+          cursor: pointer; 
+        }
+
+        .select-quantity {
+          position: relative;
+          margin-top: 4px;
+          width: 100px;
+          height: 36px;
+          border: 0;
+          outline: 0;
+          font: inherit;
+          cursor: pointer;
+          border: 1px solid #ddd;
+          text-align: center;
+        }
+
+        .image-container { 
+            position: relative; 
+            width: 211px; 
+            height: 281px; 
+            margin-right: 24px; 
+        }
+
+        .cart-detail-content {
+          position: relative;
+          width: 100%;
+          height: 70%;
+          /* background-color: rgb(196, 232, 255); */
+        }
+
+        .cart-detail-summary {
+          position: relative;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          height: 25%;
+          /* background-color: bisque; */
+        }
     </style>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Cloth Store</h1>
+    <div class="cart-container">
+        <h1>ตะกร้าสินค้า</h1>
 
-        <div class="top-right">
-            @if (Auth::check())
-                <a href="{{ route('profile') }}">
-                    <img src="{{ asset('path/to/profile_icon.png') }}" alt="Profile" class="profile-icon">
-                </a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Register</a>
-            @endif
-        </div>
-
-        
-        <div class="row">
-            @foreach ($products as $product)
-            <div class="col-md-4 mb-4">
-                <div class="product-card">
-                    <a href="{{ url($product->product_id) }}">
-                        <img src="{{ asset('storage/' . $product->picture) }}" alt="{{ $product->description }}" class="product-image">
-                        <div class="product-details">
-                            <p class="product-name">{{ $product->description }}</p>
-                            <p class="product-price">{{ $product->price }} à¸¿</p>
-                            <p class="text-muted">Size: {{ $product->size }} | Color: {{ $product->color }}</p>
-                        </div>
-                    </a>
+        <div class="cart-container-box">
+          <div class="cart-item-container">
+              <!-- @foreach($items as $item) -->
+              <div class="cart-item">
+                <div
+                  class="image-container"
+                >
+                  <!-- <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}"> -->
+                  <img style="width: 100%; height: 100%;" src="../../public/images/fighter.jpg" alt="{{ $item['name'] }}">
                 </div>
+
+                <div class="cart-details">
+                  <div class="cart-detail-content">
+                    <!-- <div class="cart-title">{{ $item['name'] }}</div> -->
+                    <div class="cart-title">
+                      <div>เสื้อฮู้ด ผ้าสเวต แขนยาว แบบสวมหัว</div>
+                      <div>x</div>
+                    </div>
+                    <!-- <div class="cart-info">สี: {{ $item['code'] }}</div> -->
+                    <div class="cart-info">สี: RED</div>
+                    <!-- <div class="cart-info">ขนาด: {{ $item['size'] }}</div> -->
+                    <div class="cart-info">ขนาด: XL</div>
+                    <!-- <div class="cart-info">ราคา: THB {{ number_format($item['price'], 2) }}</div> -->
+                    <div class="cart-info">ราคา: THB 1,290.00</div>
+                  </div>
+
+                  <div class="cart-detail-summary">
+                    <div class="cart-info-quantity">
+                        จำนวน:
+                        <br/>
+                        <select class="select-quantity" name="quantity" id="quantity_{{ $loop->index }}">
+                            <option value="1" {{ $item['quantity'] == 1 ? 'selected' : '' }}>1</option>
+                            <option value="2" {{ $item['quantity'] == 2 ? 'selected' : '' }}>2</option>
+                            <option value="3" {{ $item['quantity'] == 3 ? 'selected' : '' }}>3</option>
+                        </select>
+                    </div>
+
+                    <!-- <div>
+                        ยอดรวม: THB {{ number_format($item['price'] * $item['quantity'], 2) }}
+                    </div> -->
+                    <div style="margin-top: 25px;">
+                        ยอดรวม: THB 1,920.00
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item">
+                  <div
+                    class="image-container"
+                  >
+                    <!-- <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}"> -->
+                    <img style="width: 100%; height: 100%;" src="../../public/images/fighter.jpg" alt="{{ $item['name'] }}">
+                  </div>
+
+                  <div class="cart-details">
+                    <div class="cart-detail-content">
+                      <!-- <div class="cart-title">{{ $item['name'] }}</div> -->
+                      <div class="cart-title">เสื้อฮู้ด ผ้าสเวต แขนยาว แบบสวมหัว</div>
+                      <!-- <div class="cart-info">สี: {{ $item['code'] }}</div> -->
+                      <div class="cart-info">สี: RED</div>
+                      <!-- <div class="cart-info">ขนาด: {{ $item['size'] }}</div> -->
+                      <div class="cart-info">ขนาด: XL</div>
+                      <!-- <div class="cart-info">ราคา: THB {{ number_format($item['price'], 2) }}</div> -->
+                      <div class="cart-info">ราคา: THB 1,290.00</div>
+                    </div>
+
+                    <div class="cart-detail-summary">
+                      <div class="cart-info-quantity">
+                          จำนวน:
+                          <br/>
+                          <select class="select-quantity" name="quantity" id="quantity_{{ $loop->index }}">
+                              <option value="1" {{ $item['quantity'] == 1 ? 'selected' : '' }}>1</option>
+                              <option value="2" {{ $item['quantity'] == 2 ? 'selected' : '' }}>2</option>
+                              <option value="3" {{ $item['quantity'] == 3 ? 'selected' : '' }}>3</option>
+                          </select>
+                      </div>
+
+                      <!-- <div>
+                          ยอดรวม: THB {{ number_format($item['price'] * $item['quantity'], 2) }}
+                      </div> -->
+                      <div style="margin-top: 25px;">
+                          ยอดรวม: THB 1,920.00
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- @endforeach -->
+
+              <div class="cart-summary">
+                <p>สรุปคำสั่งซื้อ 2 รายการ</p>
+                <p class="total">ยอดรวม: THB 2,580.00</p>
+                <button class="checkout-btn">ชำระเงิน</button>
+              </div>
             </div>
-            @endforeach
         </div>
     </div>
 </body>

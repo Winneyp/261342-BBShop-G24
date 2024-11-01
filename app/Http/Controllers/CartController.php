@@ -14,12 +14,10 @@ class CartController extends Controller
     public function show()
     {
         $user = Auth::user();
-    
-        // Fetch or create the cart for the user
-        $cart = $user->cart ?? Cart::create(['user_id' => $user->id]);
-        $products = $cart->cartProducts;
-    
-        return view('cart.index', compact('products'));
+        $cart = $user->cart;
+        $products = $cart->products()->get();
+
+        return view('cart', compact('cart', 'products'));
     }
     
 
