@@ -17,6 +17,11 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
+    public function show($id){
+        $products = Product::findOrFail($id);
+        return view('products.show', compact('products'));
+    }
+
     public function deleteClothFromDb()
     {
         // Fetch all products from the database
@@ -56,7 +61,7 @@ class ProductController extends Controller
             'size' => 'required|string|max:255',
             'color' => 'required|string|max:255',
             'picture' => 'required|image|mimes:jpg,jpeg,png|max:2048', // validate image
-            'description' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'stock_quantity' => 'required|integer',
         ]);
 
@@ -74,7 +79,7 @@ class ProductController extends Controller
             'size' => $request->input('size'),
             'color' => $request->input('color'),
             'picture' => $path,
-            'description' => $request->input('description'),
+            'name' => $request->input('name'),
             'stock_quantity' => $request->input('stock_quantity'),
         ]);
 

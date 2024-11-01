@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('cart_id')->references('cart_id')->on('Cart');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('product_id')->on('Product');
-            $table->integer('amount');
+            $table->integer('amount')->nullable(false);
             $table->timestamps();
         });
     }
