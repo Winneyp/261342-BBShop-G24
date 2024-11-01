@@ -81,5 +81,10 @@ class ProductController extends Controller
         return redirect()->route('delete.cloth.from.db')->with('success', 'Product added successfully.');
     }
 
+    //fetch product by id
+    public function show($id){
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
+    }
     
 }
