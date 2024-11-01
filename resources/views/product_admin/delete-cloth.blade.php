@@ -33,12 +33,12 @@
                 @foreach ($products as $product)
                     <tr>
                         <td>{{ $product->product_id }}</td>
-                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->name }}</td>
                         <td>{{ $product->price }} ฿</td>
                         <td>{{ $product->size }}</td>
                         <td>{{ $product->color }}</td>
                         <td>{{ $product->stock_quantity }}</td>
-                        <td><img src="{{ asset('storage/'.$product->picture) }}" alt="{{ $product->description }}" style="width: 100px;"></td>
+                        <td><img src="{{ asset('storage/'.$product->picture) }}" alt="{{ $product->name }}" style="width: 100px;"></td>
                         <td>
                             <form action="{{ route('delete.cloth.destroy', $product->product_id) }}" method="POST" style="display:inline;">
                                 @csrf

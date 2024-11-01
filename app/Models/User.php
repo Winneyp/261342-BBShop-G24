@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthdate',
+        'gender',
+        'profile_photo',
     ];
 
     /**
@@ -32,7 +35,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
      * Get the attributes that should be cast.
      *
@@ -51,4 +53,13 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
+    public function wishlist()
+    {
+        return $this->belongsTo(Wishlist::class);
+    }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class, 'user_id');
+    }
 }

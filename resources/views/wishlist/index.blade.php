@@ -49,17 +49,17 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5" >
-        <h1 class="text-center mb-4" >BB Store</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Cloth Store</h1>
 
         <div class="top-right">
             @if (Auth::check())
                 <a href="{{ route('profile') }}">
-                    <img src="{{ asset('storage/UI_icon/icon.png') }}" alt="Profile" class="profile-icon" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+                    <img src="{{ asset('path/to/profile_icon.png') }}" alt="Profile" class="profile-icon">
                 </a>
             @else
                 <a href="{{ route('login') }}">Login</a>
-                <!-- <a href="{{ route('register') }}">Register</a> -->
+                <a href="{{ route('register') }}">Register</a>
             @endif
         </div>
 
@@ -68,12 +68,12 @@
             @foreach ($products as $product)
             <div class="col-md-4 mb-4">
                 <div class="product-card">
-                    <a href="{{ route('products.show', $product->product_id) }}">
-                        <img src="{{ asset('storage/' . $product->picture) }}" alt="{{ $product->name }}" class="product-image">
+                    <a href="{{ url($product->product_id) }}">
+                        <img src="{{ asset('storage/' . $product->picture) }}" alt="{{ $product->description }}" class="product-image">
                         <div class="product-details">
-                            <p class="product-name">{{ $product->name }}</p>
-                            <p class="product-price">{{ $product->price }} ฿</p>
-                            <!-- <p class="text-muted">Size: {{ $product->size }} | Color: {{ $product->color }}</p> -->
+                            <p class="product-name">{{ $product->description }}</p>
+                            <p class="product-price">{{ $product->price }} à¸¿</p>
+                            <p class="text-muted">Size: {{ $product->size }} | Color: {{ $product->color }}</p>
                         </div>
                     </a>
                 </div>
