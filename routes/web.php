@@ -24,10 +24,6 @@ Route::post('/addNewProduct', [ProductController::class, 'store'])->name('add.ne
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
-<<<<<<< HEAD
-//product
-Route::get('/{product_id}', [ProductController::class, 'show'])->name('products.show');
-=======
 
 //Product
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
@@ -57,4 +53,3 @@ Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile
 
 
 require __DIR__.'/auth.php';
->>>>>>> Pooh
